@@ -1,0 +1,1 @@
+isLookingRight = false;
