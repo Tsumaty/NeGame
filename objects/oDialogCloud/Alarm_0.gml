@@ -1,0 +1,1 @@
+playMsgAnim = true;

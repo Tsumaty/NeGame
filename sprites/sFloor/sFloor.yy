@@ -11,7 +11,7 @@
   "collisionTolerance": 0,
   "swfPrecision": 2.525,
   "bbox_left": 22,
-  "bbox_right": 137,
+  "bbox_right": 138,
   "bbox_top": 59,
   "bbox_bottom": 87,
   "HTile": false,
@@ -82,7 +82,7 @@
   ],
   "nineSlice": null,
   "parent": {
-    "name": "Спрайты",
-    "path": "folders/Спрайты.yy",
+    "name": "Sprites",
+    "path": "folders/Sprites.yy",
   },
 }

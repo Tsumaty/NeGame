@@ -1,19 +1,21 @@
-if (instance_exists(oPlayer))
+var player = instance_nearest(x, y, oPlayer);
+
+if (instance_exists(player))
 {
-	if (distance_to_object(oPlayer) < 150)
-	{
-		oPlayer.canChat = true;
-		oPlayer.chatCharacter = self;
-	}
-	else
-	{
-		oPlayer.canChat = false;
-		oPlayer.chatCharacter = noone;
-	}
-	if (distance_to_object(oPlayer) > 300 && instance_exists(chatCloud))
-	{
-		instance_destroy(chatCloud);
-	}
+    if (distance_to_object(player) < chatDist)
+    {
+        showButton = true;
+    }
+    else
+    {
+        showButton = false;
+        if (distance_to_object(player) > chatDist * 1.5)
+            deactivateChatCloud(chatCloud);
+    }
+}
+else
+{
+    deactivateChatCloud(chatCloud);
 }
 
 alarm[1] = 15;

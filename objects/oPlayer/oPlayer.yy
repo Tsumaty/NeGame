@@ -39,7 +39,7 @@
   "properties": [],
   "overriddenProperties": [],
   "parent": {
-    "name": "Объекты",
-    "path": "folders/Объекты.yy",
+    "name": "Creatures",
+    "path": "folders/Objects/Creatures.yy",
   },
 }

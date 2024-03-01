@@ -1,11 +1,23 @@
 /// @description диалог
-if (isChatting && instance_exists(chatCharacter) && instance_exists(chatCharacter.chatCloud))
+var chatChar = instance_nearest(x, y, oCrooglick);
+
+if (chatChar != noone)
 {
-	isChatting = false;
-	instance_destroy(chatCharacter.chatCloud);
-}
-else if (canChat && instance_exists(chatCharacter))
-{
-	chatCharacter.chatCloud = instance_create_depth(chatCharacter.bbox_right + 9, chatCharacter.bbox_top - 12, -10, oDialogCloud);
-	isChatting = true;
+    if (distance_to_object(chatChar) < chatChar.chatDist)
+    {
+        if (isChatting)
+        {
+            if (++chatChar.chatCloud.msgNumber >= array_length(chatChar.chatCloud.msg))
+            {
+                isChatting = false;
+                chatChar.chatCloud.msgNumber = 0;
+                deactivateChatCloud(chatChar.chatCloud);
+            }
+        }
+        else
+        {
+            isChatting = true;
+            activateChatCloud(chatChar.chatCloud);
+        }
+    }
 }
