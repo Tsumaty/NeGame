@@ -1,23 +1,40 @@
 /// @description диалог
-var chatChar = instance_nearest(x, y, oCrooglick);
-
-if (chatChar != noone)
+// если игрок стоит на месте
+if (horsp == 0 && versp == 0)
 {
-    if (distance_to_object(chatChar) < chatChar.chatDist)
+    // ближайший разговаривающий персонаж
+    var chatChar = instance_nearest(x, y, oCharacter);
+    if (chatChar != noone && chatChar.movingAlg == 0)
     {
-        if (isChatting)
+        // если персонаж достаточно близко
+        if (distance_to_object(chatChar) < chatChar.chatDist)
         {
-            if (++chatChar.chatCloud.msgNumber >= array_length(chatChar.chatCloud.msg))
+            // если игрок уже разговаривает
+            if (isChatting)
             {
-                isChatting = false;
+                // номер реплики увеличивается
+                if (++chatChar.chatCloud.msgNumber >= array_length(chatChar.chatCloud.msg))
+                {
+                    isChatting = false;
+                    //chatChar.chatCloud.msgNumber = 0;
+                    deactivateChatCloud(chatChar.chatCloud);
+                }
+            }
+            // если игрок не в разговоре
+            else// if (instance_exists(prevChatChar) && !prevChatChar.chatCloud.activated)
+            {
+                // игрок начинает разговор
+                isChatting = true;
                 chatChar.chatCloud.msgNumber = 0;
-                deactivateChatCloud(chatChar.chatCloud);
+                activateChatCloud(chatChar.chatCloud);
             }
         }
+        /*// если персонаж далеко
         else
         {
-            isChatting = true;
-            activateChatCloud(chatChar.chatCloud);
-        }
+            // разговор заканчивется
+            deactivateChatCloud(chatChar.chatCloud);
+            isChatting = false;
+        }*/
     }
 }

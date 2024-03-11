@@ -17,3 +17,6 @@ msgScaley = 0;
 msgAnimPos = 0;
 msgAnimCurve = animcurve_get_channel(pingPong, 0);
 playMsgAnim = false;
+
+isLookingRight = true;
+textx = x - sprite_xoffset + sprite_width / 2;
