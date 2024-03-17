@@ -1,58 +1,43 @@
 // падение
-versp = min(50, versp + 1);
+versp = min(50, versp + room_speed / 60);
+
+// прямоугольник проверки опоры stand под ногами
+var colRect = function(stand)
+{
+    return collision_rectangle(bbox_left + 1, bbox_bottom - 14,
+            bbox_right - 1, bbox_bottom + 3, stand, true, true);
+}
+
+var ground = colRect(oObstacle);
+
+// прыжок
+if (doJump && !place_meeting(x, y - jumpForce, oObstacle) && (ground || colRect(oCrooglick)))
+{
+    versp = -jumpForce;
+    doJump = false;
+}
 
 // столкновение с полом
 if (place_meeting(x, y + versp, oObstacle))
 {
-    // versp = max(0, versp - 20);
     versp = 0;
 }
 
-// прямоугольник столкновения у ног
-/*colRect = function(_x, yTop, yBottom)
-{
-    return collision_rectangle(bbox_left + _x, bbox_bottom + yTop,
-            bbox_right + _x, bbox_bottom + yBottom, oObstacle, true, true);
-}*/
-
 // столкновение со стеной
-if (/*horsp != 0 && */place_meeting(x + horsp, y + versp, oObstacle))
+if (place_meeting(x + horsp, y, oObstacle))
 {
-    if (!place_meeting(x + horsp, y + versp - 4, oObstacle))
+    if (!place_meeting(x + horsp, y + versp - liftHeight, oObstacle))
     {
-        versp = max(-4, versp - 2);
-        //versp -= abs(horsp) / 2;
+        versp = max(-maxsp, versp - liftSpeed);
         if (horsp > 0)
-        {
-            horsp = max(0, horsp - 0.2);
-        }
+            horsp = max(0, horsp - decelRate);
         else
-        {
-            horsp = min(0, horsp + 0.2);
-        }
+            horsp = min(0, horsp + decelRate);
     }
     else
     {
-        /*if (horsp > 0)
-        {
-            horsp = max(0, horsp - 20);
-        }
-        else
-        {
-            horsp = min(0, horsp + 20);
-        }*/
         horsp = 0;
     }
-}
-
-// прыжок
-if (doJump && !place_meeting(x, y - 15, oObstacle) && (collision_ellipse(bbox_left + 1, bbox_bottom - 14,
-        bbox_right - 1, bbox_bottom + 3, oObstacle, true, true) ||
-        collision_ellipse(bbox_left + 1, bbox_bottom - 14,
-        bbox_right - 1, bbox_bottom + 3, oCrooglick, true, true)))
-{
-    versp = -15;
-    doJump = false;
 }
 
 // движение
@@ -61,13 +46,24 @@ vspeed = versp;
 
 // трение
 if (horsp > 0)
-    horsp = max(0, horsp - maxsp / 18);
+{
+    if (ground)
+        horsp = max(0, horsp - ground.frictForce);
+    else
+        horsp = max(0, horsp - WINDAGE);
+}
 else if (horsp < 0)
-    horsp = min(0, horsp + maxsp / 18);
+{
+    if (ground)
+        horsp = min(0, horsp + ground.frictForce);
+    else
+        horsp = min(0, horsp + WINDAGE);
+}
 
 // дыхание
-scalex = animcurve_channel_evaluate(breathe, breathePos) / 20 + 1;
-scaley = scalex;
+scalex = animcurve_channel_evaluate(breathe, breathePos) / 20;
+scaley = scalex + image_yscale;
+scalex += abs(image_xscale);
 if (horsp < 0 || (!isLookingRight && horsp == 0))
     scalex *= -1;
 

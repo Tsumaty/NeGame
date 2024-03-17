@@ -1,6 +1,6 @@
 /// @description период проверки на наличие игрока поблизости
 var player = instance_nearest(x, y, oPlayer);
-if (player != noone)
+if (player)
 {
     if (distance_to_object(player) < chatDist && movingAlg == 0)
     {
@@ -18,7 +18,7 @@ else
     deactivateChatCloud(chatCloud);
 }
 
-alarm[1] = 15;
+alarm[1] = room_speed / 4;
 
 if (isLookingRight)
 {

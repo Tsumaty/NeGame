@@ -12,8 +12,8 @@
   "spriteMaskId": null,
   "persistent": false,
   "parentObjectId": {
-    "name": "oFloor",
-    "path": "objects/oFloor/oFloor.yy",
+    "name": "oObstacle",
+    "path": "objects/oObstacle/oObstacle.yy",
   },
   "physicsObject": false,
   "physicsSensor": false,

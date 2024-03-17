@@ -1,4 +1,4 @@
-/// @description движение согласно алгоритму
+/// @description движение по алгоритму
 switch (movingAlg)
 {
     case 1:
@@ -10,9 +10,9 @@ switch (movingAlg)
         }
         
         if (isLookingRight)
-            horsp = min(maxsp, horsp + maxsp / 5);
+            horsp = min(maxsp, horsp + accelRate);
         else
-            horsp = max(-maxsp, horsp - maxsp / 5);
+            horsp = max(-maxsp, horsp - accelRate);
     break;
 }
 

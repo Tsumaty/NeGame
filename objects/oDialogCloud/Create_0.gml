@@ -2,8 +2,8 @@
 // облако
 //
 activated = false; // активировано ли
-scalex = 0; // масштаб по x,
-scaley = 0; // по y
+scalex = 0; // масштаб по x
+scaley = 0; // масштаб по y
 animPos = 0; // позиция анимации
 animCurve = animcurve_get_channel(pingPong, 0); // анимация
 playAnim = false; // нужно ли проигрывать анимацию
@@ -20,3 +20,4 @@ playMsgAnim = false;
 
 isLookingRight = true;
 textx = x - sprite_xoffset + sprite_width / 2;
+texty = y - sprite_yoffset + sprite_height / 2;

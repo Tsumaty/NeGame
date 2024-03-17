@@ -4,7 +4,8 @@ if (horsp == 0 && versp == 0)
 {
     // ближайший разговаривающий персонаж
     var chatChar = instance_nearest(x, y, oCharacter);
-    if (chatChar != noone && chatChar.movingAlg == 0)
+    // если он существует и не двигается
+    if (chatChar && chatChar.movingAlg == 0)
     {
         // если персонаж достаточно близко
         if (distance_to_object(chatChar) < chatChar.chatDist)
