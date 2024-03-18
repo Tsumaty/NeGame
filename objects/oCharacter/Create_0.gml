@@ -5,7 +5,7 @@ chatCloud = instance_create_depth(bbox_right + 4, bbox_top, depth - 10, oDialogC
 chatMsg = []; // набор фраз для разговора
 chatCloud.msg = chatMsg;
 chatDist = 170; // расстояние активации возможности разговора
-alarm[1] = room_speed / 4; // период проверки необходимости отключать диалоговое облако
+alarm[1] = FPS / 4; // период проверки необходимости отключать диалоговое облако
 showButton = false; // показывать ли кнопку возможности разговора
 
 // алгоритм движения
@@ -16,4 +16,4 @@ movingxLeft = -1000;
 movingxRight = room_width + 999;
 //movingTime = 15; // период проверки направления
 canChangeDir = true; // может ли менять направление
-changeDirTime = room_speed / 2; // время возможности смены направления
+changeDirTime = FPS / 2; // время возможности смены направления

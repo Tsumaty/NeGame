@@ -18,7 +18,7 @@ else
     deactivateChatCloud(chatCloud);
 }
 
-alarm[1] = room_speed / 4;
+alarm[1] = FPS / 4;
 
 if (isLookingRight)
 {

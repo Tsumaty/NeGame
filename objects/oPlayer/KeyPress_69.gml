@@ -20,9 +20,14 @@ if (horsp == 0 && versp == 0)
                     //chatChar.chatCloud.msgNumber = 0;
                     deactivateChatCloud(chatChar.chatCloud);
                 }
+                else
+                {
+                    with (chatChar.chatCloud)
+                        chatNum = playSnd(chatName, chatNum, chatMaxNum);
+                }
             }
             // если игрок не в разговоре
-            else// if (instance_exists(prevChatChar) && !prevChatChar.chatCloud.activated)
+            else
             {
                 // игрок начинает разговор
                 isChatting = true;
@@ -30,12 +35,5 @@ if (horsp == 0 && versp == 0)
                 activateChatCloud(chatChar.chatCloud);
             }
         }
-        /*// если персонаж далеко
-        else
-        {
-            // разговор заканчивется
-            deactivateChatCloud(chatChar.chatCloud);
-            isChatting = false;
-        }*/
     }
 }

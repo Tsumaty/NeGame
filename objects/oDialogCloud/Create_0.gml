@@ -2,22 +2,33 @@
 // облако
 //
 activated = false; // активировано ли
-scalex = 0; // масштаб по x
-scaley = 0; // масштаб по y
-animPos = 0; // позиция анимации
-animCurve = animcurve_get_channel(pingPong, 0); // анимация
-playAnim = false; // нужно ли проигрывать анимацию
+isLookingRight = true; // повёрнуто вправо
+// масштаб
+scalex = 0;
+scaley = 0;
+// анимация
+animCurve = animcurve_get_channel(pingPong, 0);
+animPos = 0; // позиция
+animSpeed = 1.2 / FPS; // скорость
+playAnim = false; // нужно ли проигрывать
+
 //
 // сообщения
 //
 msg = [];
-msgNumber = 0;
+msgNumber = 0; // номер
+// координаты
+msgx = bbox_left + (bbox_right - bbox_left) / 2;
+msgy = bbox_top + (bbox_bottom - bbox_top) / 2;
+// масштаб
 msgScalex = 0;
 msgScaley = 0;
-msgAnimPos = 0;
+// анимация
 msgAnimCurve = animcurve_get_channel(pingPong, 0);
-playMsgAnim = false;
+msgAnimPos = 0; // позиция
+playMsgAnim = false; // нужно ли проигрывать
 
-isLookingRight = true;
-textx = x - sprite_xoffset + sprite_width / 2;
-texty = y - sprite_yoffset + sprite_height / 2;
+chatMaxNum = 0;
+chatName = "sndChat";
+while (asset_get_index(chatName + string(++chatMaxNum)) != -1) {}
+chatNum = irandom_range(1, --chatMaxNum);
