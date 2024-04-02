@@ -1,7 +1,7 @@
 {
   "resourceType": "GMSound",
   "resourceVersion": "1.0",
-  "name": "sndChat1",
+  "name": "sndJump2",
   "conversionMode": 0,
   "compression": 1,
   "volume": 1.0,
@@ -14,8 +14,8 @@
     "name": "audiogroup_default",
     "path": "audiogroups/audiogroup_default",
   },
-  "soundFile": "sndChat1.wav",
-  "duration": 1.38771,
+  "soundFile": "sndJump2.wav",
+  "duration": 0.44966,
   "parent": {
     "name": "Sounds",
     "path": "folders/Sounds.yy",
