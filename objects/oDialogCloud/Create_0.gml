@@ -28,7 +28,8 @@ msgAnimCurve = animcurve_get_channel(pingPong, 0);
 msgAnimPos = 0; // позиция
 playMsgAnim = false; // нужно ли проигрывать
 
-chatMaxNum = 0;
+// звуки разговора
 chatName = "sndChat";
-while (asset_get_index(chatName + string(++chatMaxNum)) != -1) {}
-chatNum = irandom_range(1, --chatMaxNum);
+var sndNums = initSound(chatName);
+chatNum = sndNums[0];
+chatMaxNum = sndNums[1];

@@ -2,7 +2,7 @@
 switch (movingAlg)
 {
     case 1:
-        if (canChangeDir && (x <= movingxLeft || x >= movingxRight))
+        if (canChangeDir && (x <= movingLeft || x >= movingRight))
         {
             isLookingRight = !isLookingRight;
             canChangeDir = false;
@@ -10,9 +10,9 @@ switch (movingAlg)
         }
         
         if (isLookingRight)
-            horsp = min(maxsp, horsp + accelRate);
+            moveRight = true;
         else
-            horsp = max(-maxsp, horsp - accelRate);
+            moveLeft = true;
     break;
 }
 

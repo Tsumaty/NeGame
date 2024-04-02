@@ -22,8 +22,12 @@ if (horsp == 0 && versp == 0)
                 }
                 else
                 {
+                    // звук разговора
                     with (chatChar.chatCloud)
-                        chatNum = playSnd(chatName, chatNum, chatMaxNum);
+                    {
+                        //if (isSilent(chatName))
+                        chatNum = playSound(chatName, chatNum, chatMaxNum, true);
+                    }
                 }
             }
             // если игрок не в разговоре

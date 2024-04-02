@@ -1,2 +1,2 @@
 playMsgAnim = true;
-chatNum = playSnd(chatName, chatNum, chatMaxNum);
+chatNum = playSound(chatName, chatNum, chatMaxNum, true);

@@ -1,24 +1,15 @@
-/// @description период проверки на наличие игрока поблизости
+/// @description проверка на наличие игрока поблизости
+alarm[1] = FPS / 4;
+
 var player = instance_nearest(x, y, oPlayer);
 if (player)
 {
-    if (distance_to_object(player) < chatDist && movingAlg == 0)
-    {
-        showButton = true;
-    }
-    else
-    {
-        showButton = false;
-        //deactivateChatCloud(chatCloud);
-        //player.isChatting = false;
-    }
+    showButton = (distance_to_object(player) < chatDist) && (movingAlg == 0);
 }
 else
 {
     deactivateChatCloud(chatCloud);
 }
-
-alarm[1] = FPS / 4;
 
 if (isLookingRight)
 {

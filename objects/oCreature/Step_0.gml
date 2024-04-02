@@ -1,79 +1,113 @@
 // падение
-versp = min(3000 / FPS, versp + 60 / FPS);
+versp = min(MAXFALLSP, versp + GRAVITACCEL);
+
+// платформа
+var platf = instance_place(x, y + 3, oPlatform);
 
 // проверка опоры stand под ногами
 var colRect = function(stand)
 {
-    return collision_rectangle(bbox_left + 1, bbox_bottom - 14,
-            bbox_right - 1, bbox_bottom + 3, stand, true, true);
+    return collision_rectangle(bbox_left + 1, bbox_bottom - 10, bbox_right - 1,
+                               bbox_bottom + 3, stand, true, true);
 }
 
-// стоит ли на земле
-var ground = colRect(oObstacle);
+// стоит ли на платформе
+var onPlatform = (platf && versp >= 0 && colRect(oPlatform));
 
-// прыжок
-if (doJump && !place_meeting(x, y - jumpForce, oObstacle) && (ground || colRect(oCrooglick)))
+// добавочные скорости от движущейся платформы
+platfHorsp = 0;
+var platfVersp = 0;
+if (onPlatform && platf.object_index == oMovingFloor)
 {
-    versp = -jumpForce;
-    doJump = false;
-    // если оттолкнулся от круглика
-    if (colRect(oCrooglick))
-    {
-        // воспроизвести звук отскока
-        bounceNum = playSnd(bounceName, bounceNum, stompMaxNum);
-    }
+    platfHorsp = platf.horsp;
+    platfVersp = platf.versp;
 }
 
-// столкновение с полом или потолком
-if (place_meeting(x, y + versp, oObstacle))
+// приземление или удар об потолок
+if (place_meeting(x, y + versp, oObstacle) || onPlatform)
 {
     if (versp >= 600 / FPS)
-        stompNum = playSnd(stompName, stompNum, stompMaxNum);
-    versp = 0;
-}
-
-// столкновение со стеной
-if (place_meeting(x + horsp, y, oObstacle))
-{
-    if (horsp != 0 && !place_meeting(x + horsp, y + versp - liftHeight, oObstacle))
-    {
-        versp = max(-maxsp, versp - liftSpeed);
-        if (horsp > 0)
-            horsp = max(0, horsp - decelRate);
-        else
-            horsp = min(0, horsp + decelRate);
-    }
-    else
-    {
-        horsp = 0;
-    }
+        groundNum = playSound(groundName, groundNum, groundMaxNum);
+    versp = min(max(0, versp), platfVersp);
 }
 
 // движение
+if (moveRight)
+{
+    horsp = min(maxsp + platfHorsp, horsp + accelRate);
+    moveRight = false;
+}
+if (moveLeft)
+{
+    horsp = max(-maxsp + platfHorsp, horsp - accelRate);
+    moveLeft = false;
+}
+
+// столкновение со стеной
+if (place_meeting(x + horsp, y + versp, oObstacle))
+{
+    var newhorsp = platfHorsp;
+    if (horsp > platfHorsp)
+        newhorsp = max(platfHorsp, horsp - decelRate + platfHorsp);
+    else if (horsp < platfHorsp)
+        newhorsp = min(platfHorsp, horsp + decelRate + platfHorsp);
+    
+    var newversp = -liftMaxsp + platfVersp;
+    
+    if (place_meeting(x + newhorsp, y - (bbox_bottom - bbox_top) / 10, oObstacle))
+    {
+        horsp = 0;
+    }
+    else
+    {
+        horsp = newhorsp;
+        versp = newversp;
+    }
+}
+
+// что под ногами
+var stand = colRect(oStand); // любая опора
+var croogl = colRect(oCrooglick); // круглик
+
+// прыжок
+if (doJump && !place_meeting(x + horsp + platfVersp, y - jumpForce + platfVersp, oObstacle) &&
+    (stand || croogl))
+{
+    versp = -jumpForce + platfVersp;
+    doJump = false;
+    // если оттолкнулся от круглика
+    if (croogl && !stand)
+    {
+        // воспроизвести звук отскока
+        bounceNum = playSound(bounceName, bounceNum, bounceMaxNum);
+    }
+}
+
+// векторный толчок
 hspeed = horsp;
 vspeed = versp;
 
 // трение
-if (horsp > 0)
+if (horsp > platfHorsp)
 {
-    if (ground)
-        horsp = max(0, horsp - ground.frictForce);
+    if (stand)
+        horsp = max(platfHorsp, horsp - stand.frictForce);
     else
-        horsp = max(0, horsp - WINDAGE);
+        horsp = max(platfHorsp, horsp - WINDAGE);
 }
-else if (horsp < 0)
+else if (horsp < platfHorsp)
 {
-    if (ground)
-        horsp = min(0, horsp + ground.frictForce);
+    if (stand)
+        horsp = min(platfHorsp, horsp + stand.frictForce);
     else
-        horsp = min(0, horsp + WINDAGE);
+        horsp = min(platfHorsp, horsp + WINDAGE);
 }
 
 // дыхание
 scalex = animcurve_channel_evaluate(breathe, breathePos) / 20;
 scaley = scalex + image_yscale;
 scalex += abs(image_xscale);
-if (horsp < 0 || (!isLookingRight && horsp == 0))
+if (horsp < platfHorsp || (!isLookingRight && horsp == platfHorsp))
     scalex *= -1;
 
 breathePos = (breathePos + breatheSpeed) mod 1;
