@@ -1,9 +1,6 @@
 // падение
 versp = min(MAXFALLSP, versp + GRAVITACCEL);
 
-// платформа
-var platf = instance_place(x, y + 3, oPlatform);
-
 // проверка опоры stand под ногами
 var colRect = function(stand)
 {
@@ -11,13 +8,19 @@ var colRect = function(stand)
                                bbox_bottom + 3, stand, true, true);
 }
 
+// платформа
+var platf = colRect(oPlatform); // instance_place(x, y + versp, oPlatform);
+
 // стоит ли на платформе
-var onPlatform = (platf && versp >= 0 && colRect(oPlatform));
+var onPlatform = (platf && versp >= 0);
+
+// стоит ли на движущейся платформе
+onMovingPlatform = (onPlatform && platf.object_index == oMovingFloor);
 
 // добавочные скорости от движущейся платформы
 platfHorsp = 0;
 var platfVersp = 0;
-if (onPlatform && platf.object_index == oMovingFloor)
+if (onMovingPlatform)
 {
     platfHorsp = platf.horsp;
     platfVersp = platf.versp;
@@ -52,9 +55,9 @@ if (place_meeting(x + horsp, y + versp, oObstacle))
     else if (horsp < platfHorsp)
         newhorsp = min(platfHorsp, horsp + decelRate + platfHorsp);
     
-    var newversp = -liftMaxsp + platfVersp;
+    var newversp = -liftSpeed + platfVersp;
     
-    if (place_meeting(x + newhorsp, y - (bbox_bottom - bbox_top) / 10, oObstacle))
+    if (place_meeting(x + newhorsp, y - liftMaxHeight/*(bbox_bottom - bbox_top) / 10*/, oObstacle))
     {
         horsp = 0;
     }
@@ -68,15 +71,16 @@ if (place_meeting(x + horsp, y + versp, oObstacle))
 // что под ногами
 var stand = colRect(oStand); // любая опора
 var croogl = colRect(oCrooglick); // круглик
+var kwadr = colRect(oKwadrick); // квадрик
 
 // прыжок
 if (doJump && !place_meeting(x + horsp + platfVersp, y - jumpForce + platfVersp, oObstacle) &&
-    (stand || croogl))
+    (stand || croogl || kwadr))
 {
     versp = -jumpForce + platfVersp;
     doJump = false;
     // если оттолкнулся от круглика
-    if (croogl && !stand)
+    if ((croogl || kwadr) && !stand)
     {
         // воспроизвести звук отскока
         bounceNum = playSound(bounceName, bounceNum, bounceMaxNum);

@@ -2,7 +2,10 @@
   "resourceType": "GMObject",
   "resourceVersion": "1.0",
   "name": "oPlatform",
-  "spriteId": null,
+  "spriteId": {
+    "name": "sFloor",
+    "path": "sprites/sFloor/sFloor.yy",
+  },
   "solid": false,
   "visible": true,
   "managed": true,

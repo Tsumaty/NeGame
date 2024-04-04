@@ -31,5 +31,5 @@ if (!isChatting && !doJump && rand >= 7 && (keyboard_check_pressed(BTN_W) || key
     jumpNum = playSound(jumpName, jumpNum, jumpMaxNum);
 }
 
-center.x = bbox_left + (bbox_right - bbox_left) / 2;
-center.y = bbox_top + (bbox_bottom - bbox_top) / 2;
+center.x += hspeed;
+center.y += vspeed;

@@ -2,7 +2,7 @@
 switch (movingAlg)
 {
     case 1:
-        if (canChangeDir && (x <= movingLeft || x >= movingRight))
+        if (canChangeDir && (x <= movingBorderLeft || x >= movingBorderRight))
         {
             isLookingRight = !isLookingRight;
             canChangeDir = false;
@@ -13,6 +13,16 @@ switch (movingAlg)
             moveRight = true;
         else
             moveLeft = true;
+    break;
+    
+    case 2:
+        if (canJump)
+        {
+            doJump = true;
+            alarm[0] = FPS / 2;
+            canJump = false;
+            alarm[3] = jumpPeriod;
+        }
     break;
 }
 

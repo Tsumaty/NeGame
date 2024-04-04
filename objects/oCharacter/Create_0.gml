@@ -10,9 +10,12 @@ showButton = false; // показывать ли кнопку возможнос
 
 // алгоритм движения
 // 0 - стоять на месте
-// 1 - двигаться влево-вправо пока не дойдёт до x-координаты movingxLeft или movingxRight
+// 1 - двигаться влево-вправо пока не дойдёт до x-координаты movingBorderLeft или movingBorderRight
+// 2 - прыгать на месте с периодом jumpPeriod
 // movingAlg = 0;
-// movingLeft = -1000;
-// movingRight = room_width + 999;
+// movingBorderLeft = x - 100;
+// movingBorderRight = x + 100;
+// jumpPeriod = 180;
 canChangeDir = true; // может ли менять направление
 changeDirTime = FPS / 2; // время возможности смены направления
+canJump = true; // может ли прыгать

@@ -1,15 +1,16 @@
 /// @description диалог
 // если игрок стоит на месте
-if (horsp == 0 && versp == 0)
+if (horsp == 0 && versp == 0 && !onMovingPlatform)
 {
     // ближайший разговаривающий персонаж
     var chatChar = instance_nearest(x, y, oCharacter);
     // если он существует и не двигается
-    if (chatChar && chatChar.movingAlg == 0)
+    if (chatChar && chatChar.horsp == 0 && chatChar.versp == 0 && chatChar.movingAlg == 0)
     {
         // если персонаж достаточно близко
         if (distance_to_object(chatChar) < chatChar.chatDist)
         {
+            chatChar.chatCloud.msgAnimPos = 0; // проиграть анимацию текста с начала
             // если игрок уже разговаривает
             if (isChatting)
             {
