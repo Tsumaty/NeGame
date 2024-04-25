@@ -8,11 +8,11 @@ spriteMove = sprite_index; // спрайт передвижения
 sprite = asset_get_index(spriteNameMove);
 if (sprite != -1) spriteMove = sprite;
 
-// isLookingRight = true; // смотрит ли вправо
+isLookingRight = bool(sign(image_xscale)); // смотрит ли вправо
 // hp = 10; // очки здоровья
 initSpeeds(maxsp); // максимальная скорость и всё, что от неё зависит
-horsp = 0; // текущая скорость по горизонтали
-versp = 0; // текущая скорость по вертикали
+// horsp = 0; // текущая скорость по горизонтали
+// versp = 0; // текущая скорость по вертикали
 moveRight = false; // идёт ли вправо
 moveLeft = false; // идёт ли влево
 doJump = false; // находится ли в состоянии прыжка

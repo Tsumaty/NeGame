@@ -2,7 +2,10 @@
   "resourceType": "GMObject",
   "resourceVersion": "1.0",
   "name": "oObstacle",
-  "spriteId": null,
+  "spriteId": {
+    "name": "sCuboid",
+    "path": "sprites/sCuboid/sCuboid.yy",
+  },
   "solid": false,
   "visible": true,
   "managed": true,

@@ -5,7 +5,8 @@ horsp = playerHorsp;
 versp = playerVersp;
 isLookingRight = playerRight;
 x = playerX;
-isChatting = false;
+y = playerY;
+isChatting = playerChat;
 
 depth -= 2;
 

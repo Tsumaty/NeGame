@@ -1,22 +1,23 @@
+image_speed = 0;
 //
 // облако
 //
-activated = false; // активировано ли
-isLookingRight = true; // повёрнуто вправо
+//activated = false; // активировано ли
+//isLookingRight = true; // повёрнуто вправо
 // масштаб
 scalex = 0;
 scaley = 0;
-// анимация
+// анимация появления
 animCurve = animcurve_get_channel(pingPong, 0);
 animPos = 0; // позиция
-animSpeed = 1.2 / FPS; // скорость
+animDefaultSpeed = animSpeed; // стандартная скорость
 playAnim = false; // нужно ли проигрывать
-image_speed = 0;
+playAnimForwards = true; // проигрывать вперёд
 
 //
-// сообщения
+// реплики
 //
-msg = [];
+//msg = [];
 msgNumber = 0; // номер
 // координаты
 msgx = bbox_left + (bbox_right - bbox_left) / 2;
@@ -33,7 +34,7 @@ playMsgAnim = false; // нужно ли проигрывать
 //
 // звуки разговора
 //
-chatName = "sndChat";
+//chatName = "sndChat";
 var sndNums = initSound(chatName);
 chatNum = sndNums[0];
 chatMaxNum = sndNums[1];

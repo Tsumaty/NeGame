@@ -1,16 +1,16 @@
 /**
-@func                       playSound(sndName, [sndNum], [sndMaxNum], [stopPlaying], [sndMinNum])
+@func                       playSound(sndName[, sndNum, sndMaxNum, stopPlaying, sndMinNum])
 @desc                       Функция воспроизводит звук из набора
 @param {String} sndName     Название звука без цифры
-@param {Real} [sndNum]      Текущий номер звука
+@param {Real} [sndNum]      Текущий номер звука (1, если не указан)
 @param {Real} [sndMaxNum]   Максимальный номер звука (по умолчанию 1)
-@param {Bool} [stopPlaying] Нужно ли прерывать звуки этой группы
 @param {Real} [sndMinNum]   Минимальный номер звука (по умолчанию 1)
 @return {Real}              Возвращает случайный номер из диапазона
 */
+// удалено: @param {Bool} [stopPlaying] Нужно ли прерывать звуки этой группы
 function playSound(sndName, sndNum=1, sndMaxNum=1/*, stopPlaying=false*/, sndMinNum=1)
 {
-    if (sndMaxNum < 1) return sndNum;
+    if (sndMaxNum < 1 || sndMinNum > sndMaxNum) return sndNum;
     
     var sndIndex = asset_get_index(sndName + string(sndNum));
     if (sndIndex != -1)

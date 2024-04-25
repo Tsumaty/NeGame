@@ -4,7 +4,7 @@ versp = min(MAXFALLSP, versp + GRAVITACCEL);
 // проверка опоры stand под ногами
 var colRect = function(stand)
 {
-    return collision_rectangle(bbox_left + 1, bbox_bottom - 10, bbox_right - 1,
+    return collision_rectangle(bbox_left + 1, bbox_bottom - 8, bbox_right - 1,
                                bbox_bottom + 3, stand, true, true);
 }
 
