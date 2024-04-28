@@ -1,86 +1,93 @@
-// падение
-versp = min(MAXFALLSP, versp + GRAVITACCEL);
-
 // проверка опоры stand под ногами
-var colRect = function(stand)
+var colBottom = function(stand)
 {
-    return collision_rectangle(bbox_left + 1, bbox_bottom - 8, bbox_right - 1,
-                               bbox_bottom + 3, stand, true, true);
+    return collision_ellipse(bbox_left + 1, bbox_bottom - (bbox_bottom - bbox_top) / 4 + 1,
+                             bbox_right - 1, bbox_bottom + 2, stand, true, true);
 }
 
-// платформа
-var platf = colRect(oPlatform); // instance_place(x, y + versp, oPlatform);
-
-// стоит ли на платформе
-var onPlatform = (platf && versp >= 0);
+// движущаяся платформа
+var movingPlatf = colBottom(oMovingFloor);
 
 // стоит ли на движущейся платформе
-onMovingPlatform = (onPlatform && platf.object_index == oMovingFloor);
+onMovingPlatform = (movingPlatf && vspeed >= 0);
 
-// добавочные скорости от движущейся платформы
-platfHorsp = 0;
-var platfVersp = 0;
-if (onMovingPlatform)
-{
-    platfHorsp = platf.horsp;
-    platfVersp = platf.versp;
-}
-
-// приземление или удар об потолок
-if (place_meeting(x, y + versp, oObstacle) || onPlatform)
-{
-    if (versp >= 600 / FPS)
-        groundNum = playSound(groundName, groundNum, groundMaxNum);
-    versp = min(max(0, versp), platfVersp);
-}
+// скорости движущейся платформы
+platfHorsp = (onMovingPlatform) ? movingPlatf.hspeed : 0;
+platfVersp = (onMovingPlatform) ? movingPlatf.vspeed : 0;
 
 // движение
 if (moveRight)
 {
-    horsp = min(maxsp + platfHorsp, horsp + accelRate);
+    horsp = min(maxsp + platfHorsp, horsp + accelRate + platfHorsp);
     moveRight = false;
 }
 if (moveLeft)
 {
-    horsp = max(-maxsp + platfHorsp, horsp - accelRate);
+    horsp = max(-maxsp + platfHorsp, horsp - accelRate + platfHorsp);
     moveLeft = false;
 }
 
-// столкновение со стеной
-if (place_meeting(x + horsp, y + versp, oObstacle))
+/*// добавляем скорости платформы
+horsp += platfHorsp;
+versp += platfVersp;*/
+
+/*// ограничиваем скорости
+horsp = median(-MAXMOVESP, horsp, MAXMOVESP);
+versp = median(-MAXMOVESP, versp, MAXMOVESP);*/
+
+// столкновение с полом или потолком
+if (place_meeting(x, y + versp, oObstacle) || (colBottom(oPlatform) && vspeed >= 0))
 {
-    var newhorsp = platfHorsp;
+    // при высокой скорости воспроизводится звук падения
+    if (versp >= 660 / FPS)
+        groundNum = playSound(groundName, groundNum, groundMaxNum);
+    
+    if (place_empty(x, y + platfVersp, oObstacle))
+        versp = platfVersp;
+    else
+        versp = 0;
+}
+
+// столкновение со стеной
+if (place_meeting(x + horsp, y, oObstacle))
+{
+    var slowedhorsp = platfHorsp;
     if (horsp > platfHorsp)
-        newhorsp = max(platfHorsp, horsp - decelRate + platfHorsp);
+        slowedhorsp = max(platfHorsp, horsp - decelRate);
     else if (horsp < platfHorsp)
-        newhorsp = min(platfHorsp, horsp + decelRate + platfHorsp);
+        slowedhorsp = min(platfHorsp, horsp + decelRate);
     
-    var newversp = -liftSpeed + platfVersp;
+    var uppedversp = max(-liftMaxSpeed, versp - liftSpeed);
     
-    if (place_meeting(x + newhorsp, y - liftMaxHeight/*(bbox_bottom - bbox_top) / 10*/, oObstacle))
+    // если можно подняться
+    if (place_empty(x + horsp, y - liftMaxHeight, oObstacle))
     {
-        horsp = 0;
+        // поднимаемся и замедляемся
+        versp = uppedversp;
+        horsp = slowedhorsp;
     }
     else
     {
-        horsp = newhorsp;
-        versp = newversp;
+        if (place_meeting(x + platfHorsp, y, oObstacle))
+            horsp = 0;
+        else
+            horsp = platfHorsp;
     }
 }
 
 // что под ногами
-var stand = colRect(oStand); // любая опора
-var croogl = colRect(oCrooglick); // круглик
-var kwadr = colRect(oKwadrick); // квадрик
+var stand = colBottom(oStand); // любая опора
+var croogl = colBottom(oCrooglick); // круглик
+var kwadr = colBottom(oKwadrick); // квадрик
 
 // прыжок
-if (doJump && !place_meeting(x + horsp + platfVersp, y - jumpForce + platfVersp, oObstacle) &&
-    (stand || croogl || kwadr))
+if (doJump && (stand || croogl || kwadr) &&
+    place_empty(x + horsp, y + platfVersp - jumpForce, oObstacle))
 {
-    versp = -jumpForce + platfVersp;
+    versp = platfVersp - jumpForce;
     doJump = false;
     // если оттолкнулся от круглика
-    if ((croogl || kwadr) && !stand)
+    if (!stand && (croogl || kwadr))
     {
         // воспроизвести звук отскока
         bounceNum = playSound(bounceName, bounceNum, bounceMaxNum);
@@ -88,23 +95,22 @@ if (doJump && !place_meeting(x + horsp + platfVersp, y - jumpForce + platfVersp,
 }
 
 // векторный толчок
-hspeed = horsp;
-vspeed = versp;
+x += horsp;
+y += versp;
+
+// падение
+versp += GRAVITACCEL;
 
 // трение
 if (horsp > platfHorsp)
 {
-    if (stand)
-        horsp = max(platfHorsp, horsp - stand.frictForce);
-    else
-        horsp = max(platfHorsp, horsp - WINDAGE);
+    var frict = (stand) ? stand.frictForce : WINDAGE;
+    horsp = max(platfHorsp, horsp - frict);
 }
 else if (horsp < platfHorsp)
 {
-    if (stand)
-        horsp = min(platfHorsp, horsp + stand.frictForce);
-    else
-        horsp = min(platfHorsp, horsp + WINDAGE);
+    var frict = (stand) ? stand.frictForce : WINDAGE;
+    horsp = min(platfHorsp, horsp + frict);
 }
 
 // дыхание
@@ -114,4 +120,4 @@ scalex += abs(image_xscale);
 if (horsp < platfHorsp || (!isLookingRight && horsp == platfHorsp))
     scalex *= -1;
 
-breathePos = (breathePos + breatheSpeed) mod 1;
+breathePos = (breathePos + breatheSpeed) % 1.0;

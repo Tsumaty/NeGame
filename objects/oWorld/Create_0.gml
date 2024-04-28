@@ -1,25 +1,25 @@
 /// @description глобальные переменные
-globalvar BTN_D, BTN_A, BTN_W, FPS, WINDAGE, MAXFALLSP, GRAVITACCEL;
+globalvar BTN_D, BTN_A, BTN_W, FPS, WINDAGE, MAXMOVESP, GRAVITACCEL;
 BTN_D = ord("D");
 BTN_A = ord("A");
 BTN_W = ord("W");
 FPS = game_get_speed(gamespeed_fps); // скорость игры
 WINDAGE = 12.6 / FPS; // сопротивление воздуха
-MAXFALLSP = 3000 / FPS; // максимальная скорость падения
+MAXMOVESP = 3000 / FPS; // предел скорости передвижения
 GRAVITACCEL = 60 / FPS; // ускорение свободного падения
 
 // переменные игрока, которые
 // меняются при переходе между румами
-globalvar curLevel, playerHp, playerHorsp, playerVersp, playerRight, playerX, playerY, playerChat;
-
+globalvar curLevel, playerHp, playerHorsp, playerVersp, playerRight, playerX, playerY/*, playerChat*/;
+/*
 ini_open("options.ini");
 // текущий уровень
-var level = ini_read_real("GameOptions", "level", rTest);
+var level = ini_read_real("GameOptions", "level", rMenu);
 if (room_exists(level))
     curLevel = level;
 else
 {
-    curLevel = rTest;
+    curLevel = rMenu;
     ini_write_real("GameOptions", "level", curLevel);
 }
 playerHp = ini_read_real("PlayerPosition", "hp", 10);
@@ -32,3 +32,12 @@ playerChat = ini_read_real("PlayerPosition", "chat", false);
 ini_close();
 
 room_goto(curLevel);
+*/
+playerHp = 10;
+playerHorsp = 0;
+playerVersp = 0;
+playerRight = true;
+playerX = 804;
+playerY = 4;
+
+room_goto(rMenu);

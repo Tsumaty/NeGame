@@ -35,9 +35,11 @@
   "overriddenProperties": [
     {"resourceType":"GMOverriddenProperty","resourceVersion":"1.0","name":"","propertyId":{"name":"name","path":"objects/oCreature/oCreature.yy",},"objectId":{"name":"oCreature","path":"objects/oCreature/oCreature.yy",},"value":"\"Crooglick\"",},
     {"resourceType":"GMOverriddenProperty","resourceVersion":"1.0","name":"","propertyId":{"name":"hp","path":"objects/oCreature/oCreature.yy",},"objectId":{"name":"oCreature","path":"objects/oCreature/oCreature.yy",},"value":"5",},
-    {"resourceType":"GMOverriddenProperty","resourceVersion":"1.0","name":"","propertyId":{"name":"maxsp","path":"objects/oCreature/oCreature.yy",},"objectId":{"name":"oCreature","path":"objects/oCreature/oCreature.yy",},"value":"180 / FPS",},
-    {"resourceType":"GMOverriddenProperty","resourceVersion":"1.0","name":"","propertyId":{"name":"jumpForce","path":"objects/oCreature/oCreature.yy",},"objectId":{"name":"oCreature","path":"objects/oCreature/oCreature.yy",},"value":"600 / FPS",},
-    {"resourceType":"GMOverriddenProperty","resourceVersion":"1.0","name":"","propertyId":{"name":"breatheSpeed","path":"objects/oCreature/oCreature.yy",},"objectId":{"name":"oCreature","path":"objects/oCreature/oCreature.yy",},"value":"0.48 / FPS",},
+    {"resourceType":"GMOverriddenProperty","resourceVersion":"1.0","name":"","propertyId":{"name":"maxsp","path":"objects/oCreature/oCreature.yy",},"objectId":{"name":"oCreature","path":"objects/oCreature/oCreature.yy",},"value":"180",},
+    {"resourceType":"GMOverriddenProperty","resourceVersion":"1.0","name":"","propertyId":{"name":"breatheSpeed","path":"objects/oCreature/oCreature.yy",},"objectId":{"name":"oCreature","path":"objects/oCreature/oCreature.yy",},"value":"0.48",},
+    {"resourceType":"GMOverriddenProperty","resourceVersion":"1.0","name":"","propertyId":{"name":"jumpForce","path":"objects/oCreature/oCreature.yy",},"objectId":{"name":"oCreature","path":"objects/oCreature/oCreature.yy",},"value":"600",},
+    {"resourceType":"GMOverriddenProperty","resourceVersion":"1.0","name":"","propertyId":{"name":"liftMaxHeight","path":"objects/oCreature/oCreature.yy",},"objectId":{"name":"oCreature","path":"objects/oCreature/oCreature.yy",},"value":"0.1",},
+    {"resourceType":"GMOverriddenProperty","resourceVersion":"1.0","name":"","propertyId":{"name":"spriteMoveSpeed","path":"objects/oCreature/oCreature.yy",},"objectId":{"name":"oCreature","path":"objects/oCreature/oCreature.yy",},"value":"25",},
   ],
   "parent": {
     "name": "Creatures",

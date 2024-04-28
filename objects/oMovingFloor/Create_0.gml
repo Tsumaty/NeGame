@@ -1,10 +1,14 @@
 event_inherited();
 
-// maxhorsp = 3;
-// maxversp = 0.6;
-// horsp = 0;
-// versp = 0;
-// horAccelRate = maxhorsp / 12;
-// verAccelRate = maxversp / 12;
+// максимальные скорости
+maxhorsp /= FPS;
+maxversp /= FPS;
+// текущие скорости
+horsp /= FPS;
+versp /= FPS;
+// скорости ускорения
+horAccelRate *= maxhorsp;
+verAccelRate *= maxversp;
 
-alarm[0] = changeDirTime; // таймер смены направления
+changeDirTime *= FPS; // время проверки смены направления
+alarm[0] = changeDirTime;

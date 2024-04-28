@@ -13,7 +13,7 @@
     "name": "sPlayerMask",
     "path": "sprites/sPlayerMask/sPlayerMask.yy",
   },
-  "persistent": false,
+  "persistent": true,
   "parentObjectId": {
     "name": "oCreature",
     "path": "objects/oCreature/oCreature.yy",
@@ -40,6 +40,8 @@
   "properties": [],
   "overriddenProperties": [
     {"resourceType":"GMOverriddenProperty","resourceVersion":"1.0","name":"","propertyId":{"name":"name","path":"objects/oCreature/oCreature.yy",},"objectId":{"name":"oCreature","path":"objects/oCreature/oCreature.yy",},"value":"\"Player\"",},
+    {"resourceType":"GMOverriddenProperty","resourceVersion":"1.0","name":"","propertyId":{"name":"maxsp","path":"objects/oCreature/oCreature.yy",},"objectId":{"name":"oCreature","path":"objects/oCreature/oCreature.yy",},"value":"270",},
+    {"resourceType":"GMOverriddenProperty","resourceVersion":"1.0","name":"","propertyId":{"name":"jumpForce","path":"objects/oCreature/oCreature.yy",},"objectId":{"name":"oCreature","path":"objects/oCreature/oCreature.yy",},"value":"900",},
   ],
   "parent": {
     "name": "Creatures",

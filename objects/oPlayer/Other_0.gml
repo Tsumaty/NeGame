@@ -1,4 +1,4 @@
-if (room == rMenu)
+if (room == rMenu && y < 0)
     exit;
 
 var nextLevel = room_next(room);
@@ -10,21 +10,26 @@ playerHp = hp;
 playerHorsp = horsp;
 playerVersp = versp;
 playerRight = isLookingRight;
-var newX, newY;
+//var newX, newY;
 switch (room)
 {
+    case rMenu:
+        x = median(130, x - 350, 860);
+        y = 6;
+    break;
+    
     case rTest:
-        newX = x - 888;
-        newY = 6;
+        x = median(140, x - 888, 2030);
+        y = 6;
     break;
         
     default:
-        newX = 6;
-        newY = y;
+        x = 100;
+        y = 6;
     break;
 }
-playerX = newX;
-playerY = newY;
+playerX = x;
+playerY = y;
     
 ini_open("options.ini");
 ini_write_string("GameOptions", "level", curLevel);

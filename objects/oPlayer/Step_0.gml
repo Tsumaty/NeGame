@@ -24,12 +24,13 @@ if (!isChatting)
 
 event_inherited();
 
-var rand = random(9);
-if (!isChatting && !doJump && rand >= 7 && (keyboard_check_pressed(BTN_W) || keyboard_check_pressed(vk_space)) &&
-    isSilent(jumpName))
+if (!isChatting && !doJump)
 {
-    jumpNum = playSound(jumpName, jumpNum, jumpMaxNum);
+    var rand = random(9);
+    if (rand >= 7 && (keyboard_check_pressed(BTN_W) || keyboard_check_pressed(vk_space)) &&
+        isSilent(jumpName))
+        jumpNum = playSound(jumpName, jumpNum, jumpMaxNum);
 }
 
-center.x += hspeed;
-center.y += vspeed;
+center.x = getCenterX();
+center.y = getCenterY();

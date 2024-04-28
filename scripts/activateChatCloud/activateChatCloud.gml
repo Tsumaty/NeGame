@@ -1,15 +1,18 @@
-// функция активации диалогового облака
+/// @desc функция включения диалогового облака
 function activateChatCloud(chatCloud)
 {
     with (chatCloud)
     {
-        //activated = true;
+        activated = true;
         // проигрываем анимацию с начала
         animPos = 0;
-        animSpeed = animDefaultSpeed;
+        //animSpeed = animDefaultSpeed;
         playAnim = true;
         playAnimForwards = true;
-        // через нек-е время включаем анимацию текста
+        // анимацию сообщения временно отключаем
+        msgVisible = false;
+        msgAnimPos = 0;
+        playMsgAnim = false;
         alarm[0] = FPS / 4;
     }
 }
