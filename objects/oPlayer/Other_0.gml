@@ -1,3 +1,4 @@
+// @desc переход на следующий уровень
 if (room == rMenu && y < 0)
     exit;
 
@@ -7,8 +8,8 @@ if (!room_exists(nextLevel))
 
 curLevel = nextLevel;
 playerHp = hp;
-playerHorsp = horsp;
-playerVersp = versp;
+playerHorsp = horsp * FPS;
+playerVersp = versp * FPS;
 playerRight = isLookingRight;
 //var newX, newY;
 switch (room)

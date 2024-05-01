@@ -1,4 +1,5 @@
 image_speed = 0;
+
 //
 // облако
 //
@@ -11,8 +12,8 @@ scaley = 0;
 animCurve = animcurve_get_channel(pingPong, 0);
 animPos = 0; // позиция
 //animDefaultSpeed = animSpeed; // стандартная скорость
-playAnim = false; // нужно ли проигрывать
-playAnimForwards = true; // проигрывать вперёд
+playAnim = 0; // 0 - не проигрывать, 1 - проигрывать вперёд, -1 - задом наперёд
+//playAnimForwards = true; // проигрывать вперёд
 
 //
 // реплики
@@ -29,8 +30,10 @@ msgScaley = 0;
 // анимация
 msgAnimCurve = animcurve_get_channel(pingPong, 0);
 msgAnimPos = 0; // позиция
-playMsgAnim = false; // нужно ли проигрывать
+playMsgAnim = 0; // 0 - не проигрывать, 1 - проигрывать вперёд, -1 - задом наперёд
+//playMsgAnimForwards = true; // проигрывать вперёд
 msgVisible = false; // видимость сообщения
+msgTimer = -1; // таймер включения сообщения
 
 //
 // звуки разговора

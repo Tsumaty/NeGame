@@ -1,4 +1,4 @@
-/// @description управление
+/// @desc управление
 if (!isChatting)
 {
     if (keyboard_check(BTN_D))
@@ -24,13 +24,13 @@ if (!isChatting)
 
 event_inherited();
 
-if (!isChatting && !doJump)
+if (!isChatting && !doJump && (keyboard_check_pressed(BTN_W) || keyboard_check_pressed(vk_space))
+    && isSilent(jumpName))
 {
     var rand = random(9);
-    if (rand >= 7 && (keyboard_check_pressed(BTN_W) || keyboard_check_pressed(vk_space)) &&
-        isSilent(jumpName))
+    if (rand >= 7)
         jumpNum = playSound(jumpName, jumpNum, jumpMaxNum);
 }
 
-center.x = getCenterX();
-center.y = getCenterY();
+center.x = getCenterX(id);
+center.y = getCenterY(id);

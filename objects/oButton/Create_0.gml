@@ -9,5 +9,5 @@ animPos = 0; // позиция кривой
 //animSpeed = 1.2 / FPS; // скорость
 //animDefaultSpeed = animSpeed; // стандартная скорость
 playAnim = false; // нужно ли проигрывать
-playAnimForwards = true; // проигрывать вперёд
+//playAnimForwards = true; // проигрывать вперёд
 //text = ""; // текст

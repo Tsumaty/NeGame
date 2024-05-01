@@ -9,7 +9,20 @@ if (maxversp > 0)
 else if (maxversp < 0)
     versp = max(maxversp, versp - verAccelRate);
 
+hspeed = horsp;
+vspeed = versp;
+
+if (surface)
+{
+    surface.hspeed = hspeed;
+    surface.vspeed = vspeed;
+}
+
 /*var creat = instance_place(x, y - 3, oCreature); // существо, которое стоит на этой платформе
+with (oCreature)
+{
+    if (colBottom(oMovingFloor) && vspeed >= 0)
+}
 if (creat && bbox_top > creat.bbox_bottom && creat.vspeed >= 0)
 {
     creat.onPlatform = true;
@@ -18,9 +31,6 @@ if (creat && bbox_top > creat.bbox_bottom && creat.vspeed >= 0)
     creat.x += horsp;
     creat.y += versp;
 }*/
-
-hspeed = horsp;
-vspeed = versp;
 
 if (horsp > 0)
     horsp = max(0, horsp - horAccelRate / 2);
@@ -31,9 +41,3 @@ if (versp > 0)
     versp = max(0, versp - verAccelRate / 2);
 else if (versp < 0)
     versp = min(0, versp + verAccelRate / 2);
-
-if (surface)
-{
-    surface.x = x;
-    surface.y = y;
-}

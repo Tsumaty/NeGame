@@ -1,10 +1,10 @@
-if (playAnim)
+if (playAnim != 0)
 {
     visible = true;
     scalex = animcurve_channel_evaluate(animCurve, animPos);
     scaley = scalex;
     
-    if (playAnimForwards)
+    if (playAnim == 1)
     {
         animPos += animSpeed;
         if (animPos > 1)
@@ -19,7 +19,7 @@ if (playAnim)
         if (animPos < 0)
         {
             animPos = 0;
-            playAnim = false;
+            playAnim = 0;
             visible = false;
         }
     }

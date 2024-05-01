@@ -3,10 +3,11 @@ event_inherited();
 // chatMsg = []; // набор фраз для разговора
 // диалоговое облако
 chatCloud = instance_create_depth(bbox_right + 4, bbox_top, depth - 10, oDialogCloud,
-    {msg : chatMsg, visible : false});
+    {msg : chatMsg});
 chatDist = 170; // расстояние активации возможности разговора
 checkPlayerPeriod = FPS / 4; // период проверки, рядом ли игрок
 alarm[1] = checkPlayerPeriod + int64(id) % 10;
+chatted = false; // до конца ли с ним поговорили
 
 // кнопка диалога
 buttonE = instance_create_depth(x, bbox_top - 16, depth - 5, oButton,

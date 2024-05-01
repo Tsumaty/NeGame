@@ -1,4 +1,4 @@
-/// @description диалог
+/// @desc диалог
 
 // если игрок стоит на месте
 if (hspeed == 0 && vspeed == 0 && !onMovingPlatform)
@@ -13,24 +13,24 @@ if (hspeed == 0 && vspeed == 0 && !onMovingPlatform)
         // если игрок уже разговаривает
         if (isChatting)
         {
-            var msgMaxNum = array_length(chatChar.chatCloud.msg) - 1;
             // номер реплики увеличивается
             // и если он превышает максимальное количество реплик персонажа
-            if (++chatChar.chatCloud.msgNumber > msgMaxNum)
+            if (++chatChar.chatCloud.msgNumber >= array_length(chatChar.chatCloud.msg))
             {
                 // разговор прекращается
                 isChatting = false;
-                --chatChar.chatCloud.msgNumber;
-                deactivateChatCloud(chatChar.chatCloud);
+                with (chatChar)
+                {
+                    chatted = true;
+                    --chatCloud.msgNumber;
+                    deactivateChatCloud(chatCloud);
+                    with (buttonE) image_index = 1;
+                }
             }
             else
             {
                 // иначе запускается следующая реплика
-                with (chatChar.chatCloud)
-                {
-                    msgVisible = false;
-                    alarm[0] = 1;
-                }
+                chatChar.chatCloud.msgTimer = 0;
             }
         }
         // если игрок не в разговоре
@@ -38,10 +38,13 @@ if (hspeed == 0 && vspeed == 0 && !onMovingPlatform)
         {
             // персонаж разворачивается к игроку
             chatChar.isLookingRight = bool(sign(x - chatChar.x));
-            //chatChar.chatCloud.isLookingRight = !chatChar.isLookingRight;
-            // начинается разговор
-            chatChar.chatCloud.msgNumber = 0;
-            activateChatCloud(chatChar.chatCloud);
+            with (chatChar)
+            {
+                //chatCloud.isLookingRight = !isLookingRight;
+                // начинается разговор
+                chatCloud.msgNumber = 0;
+                activateChatCloud(chatCloud);
+            }
             isChatting = true;
         }
     }
