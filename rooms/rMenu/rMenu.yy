@@ -24,6 +24,11 @@
         {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_461D234","properties":[],"isDnd":false,"objectId":{"name":"oPlatform","path":"objects/oPlatform/oPlatform.yy",},"inheritCode":false,"hasCreationCode":false,"colour":4294967295,"rotation":0.0,"scaleX":16.25,"scaleY":2.0,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":810.0,"y":42.0,},
         {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_575EE61F","properties":[],"isDnd":false,"objectId":{"name":"oObstacle","path":"objects/oObstacle/oObstacle.yy",},"inheritCode":false,"hasCreationCode":false,"colour":4294967295,"rotation":0.0,"scaleX":13.750001,"scaleY":4.5000005,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":60.0,"y":638.0,},
         {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_68DFFF1","properties":[],"isDnd":false,"objectId":{"name":"oObstacle","path":"objects/oObstacle/oObstacle.yy",},"inheritCode":false,"hasCreationCode":false,"colour":4294967295,"rotation":0.0,"scaleX":13.500001,"scaleY":4.5000005,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":1540.0,"y":638.0,},
+        {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_2E7F9B24","properties":[],"isDnd":false,"objectId":{"name":"oObstacle","path":"objects/oObstacle/oObstacle.yy",},"inheritCode":false,"hasCreationCode":false,"colour":4294967295,"rotation":0.0,"scaleX":1.5,"scaleY":15.5,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":46.0,"y":804.0,},
+        {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_134F14EA","properties":[],"isDnd":false,"objectId":{"name":"oObstacle","path":"objects/oObstacle/oObstacle.yy",},"inheritCode":false,"hasCreationCode":false,"colour":4294967295,"rotation":0.0,"scaleX":1.5,"scaleY":15.5,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":1558.0,"y":804.0,},
+        {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_6B97BAEF","properties":[
+            {"resourceType":"GMOverriddenProperty","resourceVersion":"1.0","name":"","propertyId":{"name":"device","path":"objects/oActivator/oActivator.yy",},"objectId":{"name":"oActivator","path":"objects/oActivator/oActivator.yy",},"value":"inst_209C0C4A",},
+          ],"isDnd":false,"objectId":{"name":"oActivator","path":"objects/oActivator/oActivator.yy",},"inheritCode":false,"hasCreationCode":false,"colour":4278190335,"rotation":0.0,"scaleX":7.125,"scaleY":14.0,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":124.0,"y":814.0,},
       ],"visible":true,"depth":-10,"userdefinedDepth":true,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritVisibility":true,"inheritSubLayers":true,"gridX":2,"gridY":2,"layers":[],"hierarchyFrozen":false,"effectEnabled":true,"effectType":null,"properties":[],},
     {"resourceType":"GMRInstanceLayer","resourceVersion":"1.0","name":"Creatures","instances":[
         {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_6EC2E5F1","properties":[],"isDnd":false,"objectId":{"name":"oPlayer","path":"objects/oPlayer/oPlayer.yy",},"inheritCode":false,"hasCreationCode":false,"colour":4294967295,"rotation":0.0,"scaleX":0.6,"scaleY":0.6,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":804.0,"y":4.0,},
@@ -31,6 +36,12 @@
     {"resourceType":"GMRInstanceLayer","resourceVersion":"1.0","name":"Platforms","instances":[
         {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_3D114B3F","properties":[],"isDnd":false,"objectId":{"name":"oCuboid","path":"objects/oCuboid/oCuboid.yy",},"inheritCode":false,"hasCreationCode":false,"colour":4286231551,"rotation":0.0,"scaleX":6.0,"scaleY":3.3125,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":312.0,"y":1112.0,},
         {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_49DD18BF","properties":[],"isDnd":false,"objectId":{"name":"oCuboid","path":"objects/oCuboid/oCuboid.yy",},"inheritCode":false,"hasCreationCode":false,"colour":4293853093,"rotation":0.0,"scaleX":-5.875,"scaleY":3.3125,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":1300.0,"y":1112.0,},
+        {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_3A40768E","properties":[
+            {"resourceType":"GMOverriddenProperty","resourceVersion":"1.0","name":"","propertyId":{"name":"surface","path":"objects/oDoor/oDoor.yy",},"objectId":{"name":"oDoor","path":"objects/oDoor/oDoor.yy",},"value":"inst_134F14EA",},
+          ],"isDnd":false,"objectId":{"name":"oDoor","path":"objects/oDoor/oDoor.yy",},"inheritCode":false,"hasCreationCode":false,"colour":4285974930,"rotation":0.0,"scaleX":-1.0,"scaleY":1.6946107,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":1558.0,"y":792.0,},
+        {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_209C0C4A","properties":[
+            {"resourceType":"GMOverriddenProperty","resourceVersion":"1.0","name":"","propertyId":{"name":"surface","path":"objects/oDoor/oDoor.yy",},"objectId":{"name":"oDoor","path":"objects/oDoor/oDoor.yy",},"value":"inst_2E7F9B24",},
+          ],"isDnd":false,"objectId":{"name":"oDoor","path":"objects/oDoor/oDoor.yy",},"inheritCode":false,"hasCreationCode":false,"colour":4278745809,"rotation":0.0,"scaleX":1.0,"scaleY":1.694611,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":46.0,"y":792.0,},
         {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_73A0CB8E","properties":[
             {"resourceType":"GMOverriddenProperty","resourceVersion":"1.0","name":"","propertyId":{"name":"movesCyclically","path":"objects/oMovingFloor/oMovingFloor.yy",},"objectId":{"name":"oMovingFloor","path":"objects/oMovingFloor/oMovingFloor.yy",},"value":"False",},
             {"resourceType":"GMOverriddenProperty","resourceVersion":"1.0","name":"","propertyId":{"name":"movingBorderTop","path":"objects/oMovingFloor/oMovingFloor.yy",},"objectId":{"name":"oMovingFloor","path":"objects/oMovingFloor/oMovingFloor.yy",},"value":"0",},
@@ -63,6 +74,11 @@
     {"name":"inst_6C31D85E","path":"rooms/rMenu/rMenu.yy",},
     {"name":"inst_575EE61F","path":"rooms/rMenu/rMenu.yy",},
     {"name":"inst_68DFFF1","path":"rooms/rMenu/rMenu.yy",},
+    {"name":"inst_209C0C4A","path":"rooms/rMenu/rMenu.yy",},
+    {"name":"inst_3A40768E","path":"rooms/rMenu/rMenu.yy",},
+    {"name":"inst_2E7F9B24","path":"rooms/rMenu/rMenu.yy",},
+    {"name":"inst_134F14EA","path":"rooms/rMenu/rMenu.yy",},
+    {"name":"inst_6B97BAEF","path":"rooms/rMenu/rMenu.yy",},
   ],
   "inheritCreationOrder": false,
   "sequenceId": null,

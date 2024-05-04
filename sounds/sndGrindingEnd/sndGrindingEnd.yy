@@ -1,7 +1,7 @@
 {
   "resourceType": "GMSound",
   "resourceVersion": "1.0",
-  "name": "sndJump1",
+  "name": "sndGrindingEnd",
   "conversionMode": 0,
   "compression": 1,
   "volume": 0.9,
@@ -14,8 +14,8 @@
     "name": "audiogroup_default",
     "path": "audiogroups/audiogroup_default",
   },
-  "soundFile": "sndJump1.wav",
-  "duration": 0.368594,
+  "soundFile": "sndGrindingEnd.wav",
+  "duration": 0.7922,
   "parent": {
     "name": "Sounds",
     "path": "folders/Sounds.yy",

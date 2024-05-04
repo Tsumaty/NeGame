@@ -15,7 +15,7 @@
     "path": "audiogroups/audiogroup_default",
   },
   "soundFile": "sndJump2.wav",
-  "duration": 0.44966,
+  "duration": 0.447438,
   "parent": {
     "name": "Sounds",
     "path": "folders/Sounds.yy",
