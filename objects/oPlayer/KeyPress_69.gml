@@ -1,12 +1,11 @@
 /// @desc диалог
-
 // если игрок стоит на месте
-if (hspeed == 0 && vspeed == 0 && !onMovingPlatform)
+if (horsp == 0 && vspeed == 0 && !onMovingPlatform)
 {
     // ближайший разговаривающий персонаж
     chatChar = instance_nearest(x, y, oCharacter);
     // если он существует, не двигается и достаточно близко
-    if (chatChar && chatChar.hspeed == 0 && chatChar.vspeed == 0 && !chatChar.onMovingPlatform
+    if (chatChar && chatChar.horsp == 0 && chatChar.vspeed == 0 && !chatChar.onMovingPlatform
         && !chatChar.isMoving && distance_to_object(chatChar) < chatChar.chatDist)
     {
         chatChar.chatCloud.msgAnimPos = 0; // проиграть анимацию текста с начала

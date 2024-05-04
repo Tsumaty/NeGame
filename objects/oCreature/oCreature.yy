@@ -42,7 +42,7 @@
     {"resourceType":"GMObjectProperty","resourceVersion":"1.0","name":"breatheSpeed","varType":0,"value":"0.36","rangeEnabled":true,"rangeMin":0.0,"rangeMax":3.0,"listItems":[],"multiselect":false,"filters":[],},
     {"resourceType":"GMObjectProperty","resourceVersion":"1.0","name":"spriteStopSpeed","varType":0,"value":"100","rangeEnabled":true,"rangeMin":0.0,"rangeMax":300.0,"listItems":[],"multiselect":false,"filters":[],},
     {"resourceType":"GMObjectProperty","resourceVersion":"1.0","name":"spriteMoveSpeed","varType":0,"value":"15","rangeEnabled":true,"rangeMin":0.0,"rangeMax":100.0,"listItems":[],"multiselect":false,"filters":[],},
-    {"resourceType":"GMObjectProperty","resourceVersion":"1.0","name":"groundName","varType":2,"value":"\"sndStomp\"","rangeEnabled":false,"rangeMin":0.0,"rangeMax":10.0,"listItems":[],"multiselect":false,"filters":[],},
+    {"resourceType":"GMObjectProperty","resourceVersion":"1.0","name":"groundName","varType":2,"value":"\"sndLand\"","rangeEnabled":false,"rangeMin":0.0,"rangeMax":10.0,"listItems":[],"multiselect":false,"filters":[],},
     {"resourceType":"GMObjectProperty","resourceVersion":"1.0","name":"bounceName","varType":2,"value":"\"sndBounce\"","rangeEnabled":false,"rangeMin":0.0,"rangeMax":10.0,"listItems":[],"multiselect":false,"filters":[],},
   ],
   "overriddenProperties": [],

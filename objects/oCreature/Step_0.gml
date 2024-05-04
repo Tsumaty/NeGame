@@ -31,7 +31,7 @@ if (moveLeft)
 if (place_meeting(x, y + versp, oObstacle) || (colBottom(oPlatform) && versp > platfVersp))
 {
     // при высокой скорости воспроизводится звук падения
-    if (versp >= 660 / FPS)
+    if (versp >= 720 / FPS)
         groundNum = playSound(groundName, groundNum, groundMaxNum);
     /*
     if (place_empty(x, y + platfVersp, oObstacle))
