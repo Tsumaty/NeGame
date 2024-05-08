@@ -1,7 +1,7 @@
 {
   "resourceType": "GMSound",
   "resourceVersion": "1.0",
-  "name": "sndBounce3",
+  "name": "sndDeath3",
   "conversionMode": 0,
   "compression": 1,
   "volume": 0.9,
@@ -14,8 +14,8 @@
     "name": "audiogroup_default",
     "path": "audiogroups/audiogroup_default",
   },
-  "soundFile": "sndBounce3.wav",
-  "duration": 0.416825,
+  "soundFile": "sndDeath3.wav",
+  "duration": 0.405941,
   "parent": {
     "name": "Sounds",
     "path": "folders/Sounds.yy",

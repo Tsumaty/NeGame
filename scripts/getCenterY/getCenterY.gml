@@ -1,5 +1,4 @@
-function getCenterY(inst)
+function getCenterY()
 {
-    with (inst)
-        return bbox_top + (bbox_bottom - bbox_top) / 2;
+    return bbox_top + (bbox_bottom - bbox_top) / 2;
 }

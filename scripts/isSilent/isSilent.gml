@@ -1,3 +1,4 @@
+/// @desc функция проверки, воспроизводится ли звук из группы
 function isSilent(sndName)
 {
     var num = 1;

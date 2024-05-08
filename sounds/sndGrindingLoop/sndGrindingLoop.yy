@@ -15,7 +15,7 @@
     "path": "audiogroups/audiogroup_default",
   },
   "soundFile": "sndGrindingLoop.wav",
-  "duration": 0.440975,
+  "duration": 3.75873,
   "parent": {
     "name": "Sounds",
     "path": "folders/Sounds.yy",
