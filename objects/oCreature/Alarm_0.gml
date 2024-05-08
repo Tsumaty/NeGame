@@ -1,2 +1,2 @@
-/// @description сброс буфера прыжка
+/// @desc сброс буфера прыжка
 doJump = false;

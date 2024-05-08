@@ -12,10 +12,10 @@ else if (maxversp < 0)
 hspeed = horsp;
 vspeed = versp;
 
-if (surface)
+with (surface)
 {
-    surface.hspeed = hspeed;
-    surface.vspeed = vspeed;
+    hspeed = other.hspeed;
+    vspeed = other.vspeed;
 }
 
 /*var creat = instance_place(x, y - 3, oCreature); // существо, которое стоит на этой платформе

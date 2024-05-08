@@ -10,5 +10,7 @@ versp /= FPS;
 horAccelRate *= maxhorsp;
 verAccelRate *= maxversp;
 
-changeDirTime *= FPS; // время проверки смены направления
-alarm[0] = changeDirTime;
+canChangeDir = true; // может ли менять направление
+canChangeDirTime *= FPS; // время перед восстановления возможности смены направления
+changeDirPeriod *= FPS; // время проверки смены направления
+alarm[0] = changeDirPeriod;

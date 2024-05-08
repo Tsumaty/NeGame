@@ -4,7 +4,7 @@ if (event_data[? "event_type"] == "sprite event")
     switch (event_data[? "message"])
     {
         case "stomp":
-            if (stand || place_meeting(x, y + 4, oStand))
+            if (stand || place_meeting(x, y + 8, oObstacle))
                 stompNum = playSound(stompName, stompNum, stompMaxNum);
         break;
     }

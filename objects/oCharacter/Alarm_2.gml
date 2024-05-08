@@ -1,16 +1,18 @@
 /// @desc проверка смены направления
-alarm[2] = changeDirTime;
+alarm[2] = changeDirPeriod;
 
-if (x <= movingBorderLeft || x >= movingBorderRight)
+if (canChangeDir && x <= movingBorderLeft || x >= movingBorderRight)
 {
+    canChangeDir = false;
+    alarm[4] = canChangeDirTime;
     if (movesCyclically)
     {
-        isMovingRight = !isMovingRight;
         isLookingRight = !isLookingRight;
+        isMoving = -isMoving;
     }
     else
     {
-        isMoving = false;
+        isMoving = 0;
+        alarm[2] = -1;
     }
 }
-//canChangeDir = true;

@@ -28,6 +28,7 @@ moveRight = false; // идёт ли вправо
 moveLeft = false; // идёт ли влево
 doJump = false; // находится ли в состоянии прыжка
 jumpForce /= FPS; // сила прыжка
+jumped = false; // прыгнул
 
 stand = noone; // опора, на которой можно стоять;
 // platf = noone; // платформа, на которую можно запрыгнуть снизу через неё

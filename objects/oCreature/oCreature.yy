@@ -44,6 +44,7 @@
     {"resourceType":"GMObjectProperty","resourceVersion":"1.0","name":"spriteMoveSpeed","varType":0,"value":"15","rangeEnabled":true,"rangeMin":0.0,"rangeMax":100.0,"listItems":[],"multiselect":false,"filters":[],},
     {"resourceType":"GMObjectProperty","resourceVersion":"1.0","name":"groundName","varType":2,"value":"\"sndLand\"","rangeEnabled":false,"rangeMin":0.0,"rangeMax":10.0,"listItems":[],"multiselect":false,"filters":[],},
     {"resourceType":"GMObjectProperty","resourceVersion":"1.0","name":"bounceName","varType":2,"value":"\"sndBounce\"","rangeEnabled":false,"rangeMin":0.0,"rangeMax":10.0,"listItems":[],"multiselect":false,"filters":[],},
+    {"resourceType":"GMObjectProperty","resourceVersion":"1.0","name":"canBounce","varType":3,"value":"0","rangeEnabled":false,"rangeMin":0.0,"rangeMax":10.0,"listItems":[],"multiselect":false,"filters":[],},
   ],
   "overriddenProperties": [],
   "parent": {

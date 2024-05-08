@@ -1,53 +1,52 @@
 if (activated)
 {
+    var startGrindingSound = function()
+    {
+        if (!audio_is_playing(sndGrindingStart) && !audio_is_playing(sndGrindingLoop))
+        {
+            audio_play_sound(sndGrindingStart, 10, false);
+            self.alarm[0] = 0.44 * FPS;
+        } 
+    }
     if (isOpening)
     {
-        if (bbox_top < bottomY)
+        if (y < openPos)
         {
             versp = min(openSpeed, versp + openAccelRate);
-            if (!audio_is_playing(sndGrindingStart) && !audio_is_playing(sndGrindingLoop))
-            {
-                audio_play_sound(sndGrindingStart, 10, false);
-                alarm[0] = 0.43 * FPS;
-            }
+            startGrindingSound();
         }
         else
         {
             activated = false;
             isOpening = false;
-            audio_stop_sound(sndGrindingStart);
-            audio_stop_sound(sndGrindingLoop);
-            audio_play_sound(sndGrindingEnd, 10, false);
+            stopGrindingSound();
+            with (surface) y = other.surfaceOpenPos;
+            isOpen = true;
         }
     }
     else
     {
-        if (bbox_bottom > bottomY)
+        with (surface) y = other.surfaceClosedPos;
+        if (y > closedPos)
         {
             versp = max(-openSpeed, versp - openAccelRate);
-            if (!audio_is_playing(sndGrindingStart) && !audio_is_playing(sndGrindingLoop))
-            {
-                audio_play_sound(sndGrindingStart, 10, false);
-                alarm[0] = 0.43 * FPS;
-            }
+            startGrindingSound();
         }
         else
         {
             activated = false;
             isOpening = true;
-            audio_stop_sound(sndGrindingStart);
-            audio_stop_sound(sndGrindingLoop);
-            audio_play_sound(sndGrindingEnd, 10, false);
+            stopGrindingSound();
+            isOpen = false;
+            if (place_meeting(x, y, oPlayer))
+            {
+                killPlayer();
+            }
         }
     }
 }
 
 vspeed = versp;
-
-if (surface)
-{
-    surface.vspeed = vspeed;
-}
 
 if (versp > 0)
     versp = max(0, versp - openAccelRate);

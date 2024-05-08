@@ -1,3 +1,6 @@
+/// @desc движение
+jumped = false;
+
 // проверка опоры stand под ногами
 var colBottom = function(stand)
 {
@@ -31,7 +34,7 @@ if (moveLeft)
 if (place_meeting(x, y + versp, oObstacle) || (colBottom(oPlatform) && versp > platfVersp))
 {
     // при высокой скорости воспроизводится звук падения
-    if (versp >= 720 / FPS)
+    if (versp >= 780 / FPS)
         groundNum = playSound(groundName, groundNum, groundMaxNum);
     /*
     if (place_empty(x, y + platfVersp, oObstacle))
@@ -51,7 +54,7 @@ if (place_meeting(x + horsp, y, oObstacle))
         slowedhorsp = min(platfHorsp, horsp + decelRate);
     var uppedversp = max(-liftMaxSpeed, versp - liftSpeed);
     // если можно подняться
-    if (slowedhorsp != platfHorsp && place_empty(x + slowedhorsp, y + uppedversp, oObstacle))
+    if (slowedhorsp != 0 && place_empty(x + slowedhorsp, y + uppedversp, oObstacle))
     {
         // замедляемся и поднимаемся
         horsp = slowedhorsp;
@@ -83,27 +86,28 @@ if (place_meeting(x + horsp, y, oObstacle))
 
 // что под ногами
 stand = colBottom(oStand); // любая опора
-var croogl = colBottom(oCrooglick); // круглик
-var kwadr = colBottom(oKwadrick); // квадрик
 
 // прыжок
-if (doJump && (stand || croogl || kwadr)/* &&
-    place_empty(x + horsp, y + platfVersp - jumpForce, oObstacle)*/)
+if (doJump)
 {
-    versp = platfVersp - jumpForce;
-    doJump = false;
-    // если оттолкнулся от круглика
-    if (!stand && (croogl || kwadr))
+    var char = colBottom(oCharacter); // персонаж
+    var bounceChar = (canBounce && char && char.bounceable); // можно ли от него отпрыгнуть
+    if (stand || bounceChar)
     {
-        // воспроизвести звук отскока
-        bounceNum = playSound(bounceName, bounceNum, bounceMaxNum);
+        versp = platfVersp - jumpForce;
+        doJump = false;
+        jumped = true;
+        // если оттолкнулся от перса
+        if (bounceChar && !stand)
+        {
+            // воспроизводится звук отскока
+            bounceNum = playSound(bounceName, bounceNum, bounceMaxNum);
+        }
     }
 }
 
 // векторный толчок
-//x += horsp;
-//y += versp;
-move_and_collide(horsp, versp, oObstacle, 2, 0, 0, MAXMOVESP, MAXMOVESP);
+move_and_collide(horsp, versp, oObstacle, 2, 0, 0, maxsp + abs(platfHorsp), MAXMOVESP);
 
 // падение
 versp += GRAVITACCEL;

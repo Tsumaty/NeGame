@@ -1,50 +1,65 @@
 /// @desc диалог
 // если игрок стоит на месте
-if (horsp == 0 && vspeed == 0 && !onMovingPlatform)
+if (chatChar && horsp == 0 && versp == GRAVITACCEL && !onMovingPlatform)
 {
-    // ближайший разговаривающий персонаж
-    chatChar = instance_nearest(x, y, oCharacter);
+    /*// ближайший персонаж
+    //chatChar = instance_nearest(x, y, oCharacter);
     // если он существует, не двигается и достаточно близко
-    if (chatChar && chatChar.horsp == 0 && chatChar.vspeed == 0 && !chatChar.onMovingPlatform
+    if (chatChar && chatChar.horsp == 0 && chatChar.versp == GRAVITACCEL && !chatChar.onMovingPlatform
         && !chatChar.isMoving && distance_to_object(chatChar) < chatChar.chatDist)
+    {*/
+    chatChar.chatCloud.msgAnimPos = 0; // проиграть анимацию текста с начала
+    // если игрок уже разговаривает
+    if (isChatting)
     {
-        chatChar.chatCloud.msgAnimPos = 0; // проиграть анимацию текста с начала
-        // если игрок уже разговаривает
-        if (isChatting)
+        // номер реплики увеличивается
+        // и если он превышает максимальное количество реплик персонажа
+        if (++chatChar.chatCloud.msgNumber >= array_length(chatChar.chatCloud.msg))
         {
-            // номер реплики увеличивается
-            // и если он превышает максимальное количество реплик персонажа
-            if (++chatChar.chatCloud.msgNumber >= array_length(chatChar.chatCloud.msg))
-            {
-                // разговор прекращается
-                isChatting = false;
-                with (chatChar)
-                {
-                    chatted = true;
-                    --chatCloud.msgNumber;
-                    deactivateChatCloud(chatCloud);
-                    with (buttonE) image_index = 1;
-                }
-            }
-            else
-            {
-                // иначе запускается следующая реплика
-                chatChar.chatCloud.msgTimer = 0;
-            }
-        }
-        // если игрок не в разговоре
-        else
-        {
-            // персонаж разворачивается к игроку
-            chatChar.isLookingRight = bool(sign(x - chatChar.x));
+            // разговор прекращается
+            isChatting = false;
             with (chatChar)
             {
-                //chatCloud.isLookingRight = !isLookingRight;
-                // начинается разговор
-                chatCloud.msgNumber = 0;
-                activateChatCloud(chatCloud);
+                hasChatted = true;
+                --chatCloud.msgNumber;
+                deactivateChatCloud(chatCloud);
+                with (buttonE) image_index = 1;
             }
-            isChatting = true;
+            if (endChatChar == chatChar)
+            {
+                switch (endChatEvent)
+                {
+                    case "increase jump force":
+                        jumpForce = increasedJumpForce;
+                        increasedJumpsNum = 3;
+                        
+                    case "can bounce":
+                        canBounce = true;
+                    break;
+                }
+            }
+            chatChar = noone;
+        }
+        else
+        {
+            // иначе запускается следующая реплика
+            chatChar.chatCloud.msgTimer = 0;
         }
     }
+    // если игрок не в разговоре
+    else
+    {
+        // персонаж разворачивается к игроку
+        chatChar.isLookingRight = bool(sign(x - chatChar.x));
+        // начинается разговор
+        with (chatChar)
+        {
+            //chatCloud.isLookingRight = !isLookingRight;
+            if (chatCloud.msgNumber == array_length(chatCloud.msg) - 1)
+                chatCloud.msgNumber = 0;
+            activateChatCloud(chatCloud);
+        }
+        isChatting = true;
+    }
+    //}
 }
